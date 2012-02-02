@@ -1,0 +1,31 @@
+Name:               nolit
+Version:            0.1
+Description:        Literate programming tool written in Haskell
+License:            GPL-3
+License-file:       LICENSE
+Author:             Toni Cebrián
+Maintainer:         ancechu@gmail.com
+Build-Type:         Simple
+Cabal-Version:      >=1.8
+
+library
+  exposed-modules:  NoLit
+  ghc-options:      -threaded -rtsopts -O2
+  ghc-prof-options: -prof -caf-all -auto-all
+  Build-Depends:    base >= 4,
+                    containers >= 0.4
+  hs-source-dirs:   src
+
+test-suite test-nolit
+    type:           exitcode-stdio-1.0
+    main-is:        Test.hs
+    hs-source-dirs: test 
+    ghc-options:    
+    build-depends:  base >= 4,
+                    nolit,
+                    QuickCheck >= 2.4,
+                    HUnit >= 1.0,
+                    test-framework >= 0.2,
+                    test-framework-quickcheck2 >= 0.2,
+                    test-framework-hunit >= 0.2
+
