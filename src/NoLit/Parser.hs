@@ -1,3 +1,3 @@
 module NoLit.Parser where
 
-foo = undefined
+parse = undefined

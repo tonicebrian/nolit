@@ -6,7 +6,7 @@ import ParserTest
 
 tests = [
     testGroup "cases" $ zipWith (testCase . show) [1::Int ..] $
-    [ case_theTest
+    [ case_parseEmptyCodeBlock
     ]
     , testGroup "properties" $ zipWith (testProperty . show) [1::Int ..] $
         [

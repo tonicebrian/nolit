@@ -19,7 +19,7 @@ library
 test-suite test-nolit
     type:           exitcode-stdio-1.0
     main-is:        Test.hs
-    hs-source-dirs: test 
+    hs-source-dirs: test src
     ghc-options:    
     build-depends:  base >= 4,
                     nolit,

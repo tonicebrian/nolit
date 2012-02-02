@@ -3,10 +3,14 @@ module ParserTest where
 import Test.QuickCheck
 import Test.HUnit
 
+import NoLit.Parser
+
+
 --------------------------------------------------    
-case_theTest = assertEqual "message" expected obtained
+emptyCodeBlock = "----\n----"
+case_parseEmptyCodeBlock = assertEqual "Incorrectly parsed empty block" expected obtained
     where
-        expected = True
+        expected = parse emptyCodeBlock
         obtained = False
 
 --------------------------------------------------    
