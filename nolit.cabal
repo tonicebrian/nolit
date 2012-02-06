@@ -16,6 +16,15 @@ library
                     containers >= 0.4
   hs-source-dirs:   src
 
+executable nolit
+  main-is:          Main.hs
+  ghc-options:      -threaded -rtsopts -O2
+  ghc-prof-options: -prof -caf-all -auto-all
+  Build-Depends:    base >= 4,
+                    containers >= 0.4,
+                    nolit
+  hs-source-dirs:   src
+
 test-suite test-nolit
     type:           exitcode-stdio-1.0
     main-is:        Test.hs
