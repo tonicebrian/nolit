@@ -1,0 +1,15 @@
+== This is literate programming
+
+Hello there
+
+----
+<*>=
+    <test.cpp>
+----
+
+----
+<test.cpp>=
+int main(){
+}
+----
+
