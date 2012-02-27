@@ -5,6 +5,8 @@ import Text.Regex.Posix
 import Data.Maybe
 import qualified Data.Map as M
 
+import Debug.Trace
+
 type Chunk = [String]
 type FileContent = String
 
@@ -47,9 +49,11 @@ createChunksMap chunks = M.fromList $ map (\c -> (extractName $ head c, tail c))
 slice :: [String] -> [Chunk]
 slice [] = []
 slice (l:ls)
-    | l =~ "-{4,}" :: Bool = let (chunk, rest) = span (\x -> not (x =~ "-{4,}" :: Bool)) ls
+    | l =~ pattern :: Bool = let (chunk, rest) = span (\x -> not (x =~ pattern :: Bool)) ls
                              in chunk : slice (tail rest)
     | otherwise = slice ls
+    where
+        pattern = "^-{4,}$"
  
 -- The first level of the <*>= tag is intended for file definition
 tangle :: String -> [TangledFile]

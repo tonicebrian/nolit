@@ -14,9 +14,10 @@ executable nolit
   ghc-prof-options: -prof -caf-all -auto-all
   Build-Depends:    base >= 4,
                     containers >= 0.4,
-                    directory,
-                    filepath,
-                    regex-posix
+                    directory >= 1.1,
+                    filepath >= 1.3,
+                    regex-posix >= 0.95
+                    
   hs-source-dirs:   src
 
 test-suite test-nolit
@@ -30,8 +31,8 @@ test-suite test-nolit
                     test-framework >= 0.2,
                     test-framework-quickcheck2 >= 0.2,
                     test-framework-hunit >= 0.2,
-                    containers,
-                    directory,
-                    filepath,
-                    regex-posix
+                    containers >= 0.4,
+                    directory >= 1.1,
+                    filepath >= 1.3,
+                    regex-posix >= 0.95
 
