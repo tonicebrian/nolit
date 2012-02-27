@@ -1,0 +1,19 @@
+=== Creating messages
+
+The first thing to do is to define the messages that clients and servers will
+exchange. Since this information is common to both systems we will create a
+separate module for holding this information
+
+[source,haskell]
+----
+<src/Common.hs>=
+data Event = Login String
+----
+
+[source,bash]
+----
+<*>=
+<src/Common.hs>
+----
+
+

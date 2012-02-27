@@ -5,6 +5,8 @@ import Text.Regex.Posix
 import Data.Maybe
 import qualified Data.Map as M
 
+import Control.Exception as CE
+
 import Debug.Trace
 
 type Chunk = [String]
@@ -27,8 +29,8 @@ generateSourceFiles root chunks = unlines $ concatMap expandLines (chunks M.! ro
                 Nothing    -> [line]
 
 -- Matches the regular expression looking for a header start of line
-matchHeader header = (header =~ "^<((\\w+(\\.\\w+)?)|\\*)>=\\s*$") :: (String,String,String,[String])
-matchLabel label = (label =~ "^(\\s*)<((\\w+(\\.\\w+)?)|\\*)>\\s*$") :: (String,String,String,[String])
+matchHeader header = (header =~ "^<([a-zA-Z\\/\\.]+|\\*)>=\\s*$") :: (String,String,String,[String])
+matchLabel label = (label =~ "^(\\s*)<([a-zA-Z\\/\\.]+)>\\s*$") :: (String,String,String,[String])
 
 getHeader :: (String,String,String,[String]) -> Maybe String
 getHeader (_,_,_,[]) = Nothing
@@ -59,6 +61,10 @@ slice (l:ls)
 tangle :: String -> [TangledFile]
 tangle content = map (\x -> TangledFile x (generateSourceFiles x theMap)) files
     where 
-        files = mapMaybe (getLabel . matchLabel) (theMap M.! "*")
+        root = case M.lookup "*" theMap of
+            Just x -> x
+            Nothing -> error "Malformed file, missing the root \"*\" element"
+
+        files = mapMaybe (getLabel . matchLabel) root
         theMap = createChunksMap.slice $ lines content
 
